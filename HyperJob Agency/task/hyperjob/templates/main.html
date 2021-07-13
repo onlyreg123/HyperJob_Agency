@@ -1,0 +1,18 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>HyperJob Main</title>
+  </head>
+  <body>
+    {% csrf_token %}
+    <h2>Welcome to HyperJob! {% if is_authenticated %}{{ username }}{% else %}(Anonimous){% endif %}!</h2>
+    {% if not is_authenticated %}
+      <div><a href="/login">Login</a></div>
+      <div><a href="/signup">Signup</a></div>
+    {% endif %}
+    <div><a href="/vacancies">Vacancies</a></div>
+    <div><a href="/resumes">Resumes</a></div>
+    <div><a href="/home">Home</a></div>
+  </body>
+</html>

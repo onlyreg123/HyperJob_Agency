@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>HyperJob Profile</title>
+  </head>
+  <body>
+    <h2>Profile</h2>
+    {% if not is_authenticated %}
+      <p>Hello, <b>(Anonimous)</b></p>
+      <div><a href="/login">Login</a></div>
+      <div><a href="/signup">Signup</a></div>
+    {% else %}
+      <p>Hello, <b>{{ username }}</b> (<a href="/logout">Logout</a>)</p>
+      {% if is_staff %}
+        <p>Create vacancy:</p>
+        <form method="post" action="/vacancy/new">{% csrf_token %}
+          <table>{{ form.as_table }}</table>
+          <button type="submit">Send</button>
+        </form>
+      {% else %}
+        <p>Create resume:</p>
+        <form method="post" action="/resume/new">{% csrf_token %}
+          <table>{{ form.as_table }}</table>
+          <button type="submit">Send</button>
+        </form>
+      {% endif %}
+    {% endif %}
+  </body>
+</html>
